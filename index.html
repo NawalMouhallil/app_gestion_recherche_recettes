@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil - Gestion Recettes</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/styleRecherche.css" />
+    <link rel="stylesheet" href="css/styleGestion.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous" />
+
+      
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="index.html">🍽️ Accueil</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-light mx-2" href="indexRecherche.html">🔍 Rechercher une recette</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-light mx-2" href="indexGestion.html">📌 Gérer mes recettes</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  </head>
+  <body>
+    <div class="hero">
+      <div class="overlay">
+        <h1>Bienvenue dans ton espace gourmand ! 🍲</h1>
+        <div class="buttons">
+          <a href="indexRecherche.html" class="btn btn-primary"
+            >🔍 Rechercher une recette</a
+          >
+          <a href="indexGestion.html" class="btn btn-success"
+            >📌 Gérer mes recettes</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="js/gestion.js"></script>
+    <script src="js/indexDB.js"></script>
+    <script src="js/recherche.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

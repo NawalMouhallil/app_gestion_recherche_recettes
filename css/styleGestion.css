@@ -1,0 +1,145 @@
+/* Importation de la police Google "Poppins" */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+/*  Navbar stylisée */
+.custom-navbar {
+    background: linear-gradient(90deg, #d35400, #e67e22); /* Dégradé orange chaleureux */
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*  Style des liens */
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+/*  Effet au survol */
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/*  Boutons arrondis */
+.nav-link.btn {
+    padding: 10px 15px;
+}
+
+/*  Responsive : centrer le menu sur mobile */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+#recetteForm {
+    margin-bottom: 20px;
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.popup.show {
+    opacity: 1;
+}
+
+.recette {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.recette h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.recette p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.recette button {
+    margin-left: 10px;
+}
+
+.details.hidden {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+#recetteForm {
+    margin-bottom: 20px;
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.popup.show {
+    opacity: 1;
+}
+
+.recette {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.recette h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.recette p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.recette button {
+    margin-left: 10px;
+}
+
+.details.hidden {
+    display: none;
+}
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Définit la langue de la page comme français -->
+
+<head>
+     <meta charset="UTF-8"> <!-- Définit l'encodage des caractères -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rendre la page responsive -->
+     <title>Trouvez un Plat pour Vos Ingrédients</title> <!-- Titre de la page -->
+     <!-- Lien vers une bibliothèque d'icônes (Font Awesome) -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous" />
+     <!-- Lien vers la feuille de style CSS -->
+     <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+     <div class="container"> <!-- Conteneur principal -->
+          <div class="meal-wrapper"> <!-- Conteneur pour la recherche et les résultats -->
+
+               <!-- Section de recherche de repas -->
+               <div class="meal-search">
+                    <h2 class="title">Trouvez des Plats pour Vos Ingrédients</h2> <!-- Titre principal -->
+                    <blockquote>
+                         La vraie nourriture n'a pas d'ingrédients, la vraie nourriture est des ingrédients.<br>
+                         <cite>- Jamie Oliver</cite> <!-- Citation -->
+                    </blockquote>
+
+                    <!-- Boîte de recherche -->
+                    <div class="meal-search-box">
+                         <input type="text" class="search-control" placeholder="Entrez un ingrédient" id="search-input">
+                         <!-- Champ de saisie -->
+                         <button type="submit" class="search-btn btn" id="search-btn"> <!-- Bouton de recherche -->
+                              <i class="fas fa-search"></i> <!-- Icône de recherche -->
+                         </button>
+                    </div>
+               </div>
+
+               <!-- Section des résultats de recherche -->
+               <div class="meal-result">
+                    <h2 class="title">Vos Résultats de Recherche :</h2> <!-- Titre des résultats -->
+                    <div id="meal">
+                         <!-- Exemple d'élément de repas (commenté pour l'instant) -->
+                         <!-- <div class="meal-item">
+            <div class="meal-img">
+              <img src="food.jpg" alt="food"> <!-- Image du repas -->
+                    </div>
+                    <div class="meal-name">
+                         <h3>Chips de Pommes de Terre</h3> <!-- Nom du repas -->
+                         <a href="#" class="recipe-btn">Voir la Recette</a> <!-- Lien vers la recette -->
+                    </div>
+               </div> 
+               <!-- Fin de l'exemple d'élément de repas -->
+          </div>
+     </div>
+
+     <!-- Section des détails du repas -->
+     <div class="meal-details">
+          <!-- Bouton pour fermer les détails -->
+          <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
+               <i class="fas fa-times"></i> <!-- Icône de fermeture -->
+          </button>
+
+          <!-- Contenu des détails du repas -->
+          <div class="meal-details-content">
+               <!-- Exemple de contenu des détails (commenté pour l'instant) -->
+               <!-- <h2 class="recipe-title">Nom du Plat Ici</h2>
+          <p class="recipe-category">Nom de la Catégorie</p>
+          <div class="recipe-instruct">
+            <h3>Instructions :</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
+          </div>
+          <div class="recipe-meal-img">
+            <img src="food.jpg" alt="">
+          </div>
+          <div class="recipe-link">
+            <a href="#" target="_blank">Regarder la Vidéo</a>
+          </div> -->
+          </div>
+     </div>
+     </div>
+     </div>
+
+     <!-- Lien vers le fichier JavaScript -->
+     <script src="script.js"></script>
+</body>
+
+</html>

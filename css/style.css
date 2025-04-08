@@ -1,0 +1,78 @@
+/* Importation de la police Google "Poppins" */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+/* Réinitialisation des marges, des bordures et de la boîte de contenu */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+/* 🔥 Navbar stylisée */
+.custom-navbar {
+    background: linear-gradient(90deg, #d35400, #e67e22); /* Dégradé orange chaleureux */
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌟 Style des liens */
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+/* 🎯 Effet au survol */
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* 🏗️ Boutons arrondis */
+.nav-link.btn {
+    padding: 10px 15px;
+}
+
+/* 📱 Responsive : centrer le menu sur mobile */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+
+/*  Fond d'écran avec une recette marocaine */
+.hero {
+    background: url('../assets/fameuxPlats.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/*  Overlay pour le contraste */
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+/*  Boutons stylisés */
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons .btn {
+    font-size: 18px;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.buttons .btn:hover {
+    transform: scale(1.1);
+}
