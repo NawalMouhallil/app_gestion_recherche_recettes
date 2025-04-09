@@ -47,7 +47,23 @@
 }
 
 
-/* Style global pour le corps de la page */
+/* Importation de la police Poppins depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+/* Réinitialisation des marges, paddings, et configuration du box-sizing */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Déclaration des variables CSS (couleurs personnalisées) */
+:root {
+    --tenne-tawny: #d65108;
+    --tenne-tawny-dark: #b54507;
+}
+
+/* Style de base du corps de la page */
 body {
     font-weight: 300;
     font-size: 1.05rem;
@@ -55,8 +71,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-
-/* Style pour les boutons */
+/* Style de base pour les boutons */
 .btn {
     font-family: inherit;
     cursor: pointer;
@@ -64,53 +79,54 @@ body {
     font-size: 1.05rem;
 }
 
-/* Style pour les textes */
+/* Texte avec opacité réduite */
 .text {
     opacity: 0.8;
 }
 
-/* Style pour les titres */
+/* Titre avec taille agrandie et marge */
 .title {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
 
-/* Conteneur principal */
+/* Conteneur pleine hauteur */
 .container {
     min-height: 100vh;
 }
 
-/* Conteneur pour la recherche et les résultats */
+/* Conteneur central pour les recettes */
 .meal-wrapper {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
     background: #fff;
     text-align: center;
 }
 
-/* Section de recherche */
+/* Zone de recherche */
 .meal-search {
     margin: 2rem 0;
 }
 
 .meal-search cite {
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
-/* Boîte de recherche */
+/* Boîte de recherche avec champ et bouton côte à côte */
 .meal-search-box {
     margin: 1.2rem 0;
     display: flex;
     align-items: stretch;
 }
 
-/* Champ de saisie et bouton de recherche */
+/* Champ texte et bouton prennent toute la largeur disponible */
 .search-control,
 .search-btn {
     width: 100%;
 }
 
+/* Style du champ de recherche */
 .search-control {
     padding: 0 1rem;
     font-size: 1.1rem;
@@ -122,10 +138,12 @@ body {
     border-bottom-left-radius: 2rem;
 }
 
+/* Couleur du placeholder dans le champ */
 .search-control::placeholder {
     color: var(--tenne-tawny);
 }
 
+/* Style du bouton de recherche */
 .search-btn {
     width: 55px;
     height: 55px;
@@ -138,20 +156,22 @@ body {
     transition: all 0.4s linear;
 }
 
+/* Couleur foncée au survol du bouton */
 .search-btn:hover {
     background: var(--tenne-tawny-dark);
 }
 
-/* Résultats de recherche */
+/* Résultat de la recherche */
 .meal-result {
     margin-top: 4rem;
 }
 
+/* Conteneur des recettes */
 #meal {
     margin: 2.4rem 0;
 }
 
-/* Style pour chaque élément de repas */
+/* Carte d'une recette individuelle */
 .meal-item {
     border-radius: 1rem;
     overflow: hidden;
@@ -159,20 +179,23 @@ body {
     margin: 2rem 0;
 }
 
+/* Image de la recette */
 .meal-img img {
     width: 100%;
     display: block;
 }
 
+/* Contenu de la recette (nom, bouton) */
 .meal-name {
     padding: 1.5rem 0.5rem;
 }
 
+/* Titre de la recette */
 .meal-name h3 {
     font-size: 1.4rem;
 }
 
-/* Bouton pour voir la recette */
+/* Bouton pour voir la recette en détail */
 .recipe-btn {
     text-decoration: none;
     color: #fff;
@@ -187,11 +210,12 @@ body {
     transition: all 0.4s linear;
 }
 
+/* Changement de couleur au survol du bouton de recette */
 .recipe-btn:hover {
     background: var(--tenne-tawny-dark);
 }
 
-/* Détails du repas */
+/* Fenêtre modale des détails de recette */
 .meal-details {
     position: fixed;
     top: 50%;
@@ -207,7 +231,7 @@ body {
     padding: 2rem 0;
 }
 
-/* Style pour la barre de défilement */
+/* Style de la scrollbar */
 .meal-details::-webkit-scrollbar {
     width: 10px;
 }
@@ -217,21 +241,22 @@ body {
     border-radius: 2rem;
 }
 
-/* Classe pour afficher les détails */
+/* Affichage de la recette (JS : active la fenêtre modale) */
 .showRecipe {
     display: block;
 }
 
-/* Contenu des détails */
+/* Contenu interne de la fenêtre modale */
 .meal-details-content {
     margin: 2rem;
 }
 
+/* Paragraphes à l'intérieur sauf la catégorie */
 .meal-details-content p:not(.recipe-category) {
     padding: 1rem 0;
 }
 
-/* Bouton pour fermer les détails */
+/* Bouton de fermeture de la modale */
 .recipe-close-btn {
     position: absolute;
     right: 2rem;
@@ -248,7 +273,7 @@ body {
     opacity: 0.9;
 }
 
-/* Titre de la recette */
+/* Titre de la recette dans la modale */
 .recipe-title {
     letter-spacing: 1px;
     padding-bottom: 1rem;
@@ -264,12 +289,12 @@ body {
     border-radius: 0.3rem;
 }
 
-/* Instructions de la recette */
+/* Instructions de préparation */
 .recipe-instruct {
     padding: 1rem 0;
 }
 
-/* Image du repas dans les détails */
+/* Image ronde dans les détails de la recette */
 .recipe-meal-img img {
     width: 100px;
     height: 100px;
@@ -278,7 +303,7 @@ body {
     display: block;
 }
 
-/* Lien vers la vidéo de la recette */
+/* Lien externe (ex: vidéo de recette) */
 .recipe-link {
     margin: 1.4rem 0;
 }
@@ -294,7 +319,7 @@ body {
     opacity: 0.8;
 }
 
-/* Message si aucun repas n'est trouvé */
+/* Message si aucune recette n'est trouvée */
 .notFound {
     grid-template-columns: 1fr !important;
     color: var(--tenne-tawny);
@@ -303,7 +328,9 @@ body {
     width: 100%;
 }
 
-/* Media Queries pour les écrans plus larges */
+/* ----- Media Queries pour un design responsive ----- */
+
+/* Sur écrans ≥ 600px : centrage de la barre de recherche */
 @media screen and (min-width: 600px) {
     .meal-search-box {
         width: 540px;
@@ -312,6 +339,7 @@ body {
     }
 }
 
+/* Sur écrans ≥ 768px : affichage des recettes en 2 colonnes */
 @media screen and (min-width: 768px) {
     #meal {
         display: grid;
@@ -326,8 +354,10 @@ body {
     }
 }
 
+/* Sur écrans ≥ 992px : 3 colonnes pour les recettes */
 @media screen and (min-width: 992px) {
     #meal {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+

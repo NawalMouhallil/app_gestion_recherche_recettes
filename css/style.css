@@ -8,14 +8,14 @@ body, html {
     padding: 0;
     font-family: 'Arial', sans-serif;
 }
-/* 🔥 Navbar stylisée */
+/*  Navbar stylisée */
 .custom-navbar {
     background: linear-gradient(90deg, #d35400, #e67e22); /* Dégradé orange chaleureux */
     padding: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 🌟 Style des liens */
+/*  Style des liens */
 .navbar-nav .nav-link {
     color: white !important;
     font-weight: bold;
@@ -23,18 +23,18 @@ body, html {
     border-radius: 8px;
 }
 
-/* 🎯 Effet au survol */
+/*  Effet au survol */
 .navbar-nav .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
 }
 
-/* 🏗️ Boutons arrondis */
+/*  Boutons arrondis */
 .nav-link.btn {
     padding: 10px 15px;
 }
 
-/* 📱 Responsive : centrer le menu sur mobile */
+/*  Responsive : centrer le menu sur mobile */
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;

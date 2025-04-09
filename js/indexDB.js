@@ -1,5 +1,5 @@
 let db;
-const request = indexedDB.open("RecettesDB", 1);
+const request = indexDB.open("RecettesDB", 1);
 
 request.onsuccess = function (event) {
   db = event.target.result;
@@ -20,12 +20,12 @@ window.onload = function () {
   let request = window.indexedDB.open("RecettesDB", 1);
 
   request.onerror = function (event) {
-    console.error("Erreur d'ouverture de IndexedDB", event);
+    console.error("Erreur d'ouverture de IndexDB", event);
   };
 
   request.onsuccess = function (event) {
     db = event.target.result;
-    console.log("IndexedDB ouverte avec succès");
+    console.log("IndexDB ouverte avec succès");
     afficherRecettes();
   };
 
@@ -51,12 +51,12 @@ function ajouterRecetteDansIndexedDB(nom, ingredients, temps) {
   });
 
   request.onsuccess = function (event) {
-    console.log("Recette ajoutée dans IndexedDB");
+    console.log("Recette ajoutée dans IndexDB");
     afficherRecettes();
   };
 
   request.onerror = function (event) {
-    console.error("Erreur d'ajout de recette dans IndexedDB", event);
+    console.error("Erreur d'ajout de recette dans IndexDB", event);
   };
 }
 
@@ -84,7 +84,6 @@ function afficherRecettes() {
     });
   };
 }
-//         <h3>Ingrédients</h3> <!-- Titre des ingrédients -->
-//         <p>${meal.strInstructions}</p> <!-- Instructions de la recette -->   
+  
 
 
