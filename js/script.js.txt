@@ -1,54 +1,66 @@
+// Ajout d'un écouteur d'événement sur le bouton "Ajouter une recette"
+// Lorsque ce bouton est cliqué, la fonction `ajouterRecette` est appelée
 document
-  .getElementById("ajouterRecette")
-  .addEventListener("click", function () {
-    afficherPopup();
-  });
+  .getElementById("ajouterRecetteBtn").addEventListener("click", ajouterRecette);
 
-function afficherPopup() {
-  const popup = document.createElement("div");
-  popup.classList.add("popup");
-  popup.innerHTML = "<p>Recette ajoutée !</p>";
-  document.body.appendChild(popup);
-
-  setTimeout(() => {
-    popup.remove();
-  }, 3000);
-}
-
+// Ajout d'un écouteur d'événement sur le bouton "Modifier une recette"
+// Lorsque ce bouton est cliqué, la fonction `modifierRecette` est appelée
 document
-  .getElementById("ajouterRecetteBtn")
-  .addEventListener("click", ajouterRecette);
+  .getElementById("modifierRecetteBtn").addEventListener("click", modifierRecette);
+  // Ajout d'un écouteur d'événement sur le bouton "Supprimer une recette"
+// Lorsque ce bouton est cliqué, la fonction `supprimerRecette` est appelée
 document
-  .getElementById("modifierRecetteBtn")
-  .addEventListener("click", modifierRecette);
+  .getElementById("supprimerRecetteBtn").addEventListener("click", supprimerRecette);
 
+// Initialisation de la base de données IndexedDB
+let db;
+const request = indexedDB.open("recettesDB", 1);
+request.onupgradeneeded = function (event) {
+  db = event.target.result;
+  // Création d'un ObjectStore pour les recettes avec un index sur le nom
+  const objectStore = db.createObjectStore("recettes", { keyPath: "id" });
+  objectStore.createIndex("nom", "nom", { unique: false });
+};
+
+request.onsuccess = function (event) {
+  db = event.target.result;
+  afficherRecettes(); // Affichage des recettes au chargement de la page
+};
+
+// Fonction pour ajouter une nouvelle recette
 function ajouterRecette() {
+  // Récupération des valeurs des champs du formulaire
   const nom = document.getElementById("nomRecette").value;
   const ingredients = document.getElementById("ingredientsRecette").value;
   const temps = document.getElementById("tempsRecette").value;
 
+  // Vérification que tous les champs sont remplis
   if (nom && ingredients && temps) {
-    // Ajout de la recette dans IndexedDB
+    // Ajout de la recette dans la base de données IndexedDB
     ajouterRecetteDansIndexedDB(nom, ingredients, temps);
 
-    // Afficher le popup
+    // Affichage d'un message de confirmation via un popup
     showPopup("Recette ajoutée avec succès!");
 
-    // Réinitialiser le formulaire
+    // Réinitialisation du formulaire
     resetForm();
   }
 }
 
+// Fonction pour afficher toutes les recettes stockées dans IndexedDB
 function afficherRecettes() {
   const listeRecettes = document.getElementById("listeRecettes");
-  listeRecettes.innerHTML = "";
+  listeRecettes.innerHTML = ""; // Réinitialisation de la liste des recettes
 
+  // Création d'une transaction en mode lecture seule sur l'ObjectStore "recettes"
   let transaction = db.transaction(["recettes"], "readonly");
   let objectStore = transaction.objectStore("recettes");
 
+  // Parcours des recettes via un curseur
   objectStore.openCursor().onsuccess = function (event) {
     let cursor = event.target.result;
     if (cursor) {
+      // Création d'un élément HTML pour afficher la recette
       const recetteDiv = document.createElement("div");
       recetteDiv.className = "recette list-group-item";
       recetteDiv.innerHTML = `<h2>${cursor.value.nom}</h2>
@@ -59,14 +71,17 @@ function afficherRecettes() {
                                     <button class="btn btn-warning" onclick="editRecette(${cursor.value.id})">Modifier</button>
                                     <button class="btn btn-danger" onclick="deleteRecette(${cursor.value.id})">Supprimer</button>`;
 
+      // Ajout d'un événement pour afficher/masquer les détails de la recette
       recetteDiv.querySelector("h2").addEventListener("click", toggleDetails);
 
+      // Ajout de la recette à la liste
       listeRecettes.appendChild(recetteDiv);
-      cursor.continue();
+      cursor.continue(); // Passage à la recette suivante
     }
   };
 }
 
+// Fonction pour charger les données d'une recette dans le formulaire pour modification
 function editRecette(id) {
   let transaction = db.transaction(["recettes"], "readonly");
   let objectStore = transaction.objectStore("recettes");
@@ -74,22 +89,27 @@ function editRecette(id) {
 
   request.onsuccess = function (event) {
     let recette = event.target.result;
+    // Remplissage des champs du formulaire avec les données de la recette
     document.getElementById("recetteId").value = recette.id;
     document.getElementById("nomRecette").value = recette.nom;
     document.getElementById("ingredientsRecette").value = recette.ingredients;
     document.getElementById("tempsRecette").value = recette.temps;
 
+    // Affichage du bouton "Modifier" et masquage du bouton "Ajouter"
     document.getElementById("ajouterRecetteBtn").classList.add("d-none");
     document.getElementById("modifierRecetteBtn").classList.remove("d-none");
   };
 }
 
+// Fonction pour modifier une recette existante
 function modifierRecette() {
+  // Récupération des données du formulaire
   const id = parseInt(document.getElementById("recetteId").value);
   const nom = document.getElementById("nomRecette").value;
   const ingredients = document.getElementById("ingredientsRecette").value;
   const temps = document.getElementById("tempsRecette").value;
 
+  // Mise à jour de la recette dans IndexedDB
   let transaction = db.transaction(["recettes"], "readwrite");
   let objectStore = transaction.objectStore("recettes");
   let request = objectStore.put({
@@ -100,21 +120,23 @@ function modifierRecette() {
   });
 
   request.onsuccess = function (event) {
-    afficherRecettes();
-    resetForm();
+    afficherRecettes(); // Mise à jour de l'affichage des recettes
+    resetForm(); // Réinitialisation du formulaire
   };
 }
 
+// Fonction pour supprimer une recette
 function deleteRecette(id) {
   let transaction = db.transaction(["recettes"], "readwrite");
   let objectStore = transaction.objectStore("recettes");
   let request = objectStore.delete(id);
 
   request.onsuccess = function (event) {
-    afficherRecettes();
+    afficherRecettes(); // Mise à jour de l'affichage après suppression
   };
 }
 
+// Fonction pour réinitialiser le formulaire
 function resetForm() {
   document.getElementById("recetteId").value = "";
   document.getElementById("nomRecette").value = "";
@@ -124,12 +146,14 @@ function resetForm() {
   document.getElementById("modifierRecetteBtn").classList.add("d-none");
 }
 
+// Fonction pour afficher un popup temporaire avec un message
 function showPopup(message) {
   const popup = document.createElement("div");
   popup.className = "popup";
   popup.innerText = message;
   document.body.appendChild(popup);
 
+  // Animation pour afficher et masquer le popup
   setTimeout(() => {
     popup.classList.add("show");
   }, 10);
@@ -142,12 +166,13 @@ function showPopup(message) {
   }, 3000);
 }
 
+// Fonction pour afficher ou masquer les détails d'une recette
 function toggleDetails(event) {
   const details = event.target.nextElementSibling;
   details.classList.toggle("hidden");
 }
 
-// Exemple de requête AJAX pour récupérer les recettes depuis une API REST
+// Exemple de récupération de recettes depuis une API REST
 function fetchRecettesFromAPI(params) {
   axios
     .get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params}`)
@@ -160,7 +185,7 @@ function fetchRecettesFromAPI(params) {
           recette.temps
         );
       });
-      afficherRecettes();
+      afficherRecettes(); // Mise à jour de l'affichage après récupération
     })
     .catch((error) => {
       console.error(
@@ -170,9 +195,11 @@ function fetchRecettesFromAPI(params) {
     });
 }
 
-// Appeler cette fonction pour remplir la base de données avec des recettes depuis l'API
+// Appel de la fonction pour récupérer des recettes depuis l'API au chargement de la page
 window.onload = function () {
   fetchRecettesFromAPI();
 };
-
-
+// Appel de la fonction pour afficher les recettes au chargement de la page
+window.onload = function () {
+  afficherRecettes();
+};
