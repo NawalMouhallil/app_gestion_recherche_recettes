@@ -1,0 +1,54 @@
+// ...code existant...
+
+// Fonction pour afficher toutes les recettes
+function afficherRecettes() {
+  // Création d'une transaction en lecture seule
+  let transaction = db.transaction(["recettes"], "readonly");
+  let store = transaction.objectStore("recettes");
+  let request = store.openCursor(); // Parcours des recettes avec un curseur
+  let liste = document.getElementById("listeRecettes");
+  liste.innerHTML = ""; // Vide la liste avant de la remplir
+
+  // Succès du parcours
+  request.onsuccess = function (event) {
+    let cursor = event.target.result;
+    if (cursor) {
+      let recette = cursor.value;
+      // Création d'un élément HTML pour chaque recette
+      let li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.innerHTML = `
+        <strong>${recette.nom}</strong> - 
+        Ingrédients : ${recette.ingredients} - 
+        Temps : ${recette.temps}
+        <button class="btn btn-warning btn-sm mx-1 float-end" onclick="modifierRecette(${recette.id})">Modifier</button>
+        <button class="btn btn-danger btn-sm float-end" onclick="confirmerSuppression(${recette.id})">Supprimer</button>
+      `;
+      liste.appendChild(li); // Ajoute l'élément à la liste
+      cursor.continue(); // Passe à la recette suivante
+    }
+  };
+}
+
+// Fonction pour demander une confirmation avant de supprimer une recette
+function confirmerSuppression(id) {
+  if (confirm("Êtes-vous sûr de vouloir supprimer cette recette ?")) {
+    supprimerRecette(id); // Appelle la fonction de suppression si l'utilisateur confirme
+  }
+}
+
+// Fonction pour supprimer une recette
+function supprimerRecette(id) {
+  // Création d'une transaction en lecture/écriture
+  let transaction = db.transaction(["recettes"], "readwrite");
+  let store = transaction.objectStore("recettes");
+  // Suppression de la recette par son ID
+  store.delete(id);
+
+  // Succès de la suppression
+  transaction.oncomplete = function () {
+    afficherRecettes(); // Met à jour la liste des recettes
+  };
+}
+
+// ...code existant...
