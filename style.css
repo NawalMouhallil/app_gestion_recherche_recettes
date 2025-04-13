@@ -114,7 +114,23 @@ body {
 .search-control,
 .search-btn {
     width: 100%;
-}
+    border: none;
+    border-radius: 2rem;
+    transition: all 0.4s linear;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: var(--tenne-tawny);
+    background: #fff;
+    padding: 0 1rem;
+    outline: 0;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    
+/* Champ de recherche et bouton prennent toute la largeur disponible */
 
 .search-control {
     padding: 0 1rem;
@@ -125,6 +141,7 @@ body {
     color: var(--tenne-tawny);
     border-top-left-radius: 2rem;
     border-bottom-left-radius: 2rem;
+
 }
 
 .search-control::placeholder {
@@ -136,11 +153,16 @@ body {
     height: 55px;
     font-size: 1.8rem;
     background: var(--tenne-tawny);
-    color: #fff;
+    color: #ffffff;
     border: none;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+
 }
 
 .search-btn:hover {
@@ -180,7 +202,7 @@ body {
 /* Bouton pour voir la recette */
 .recipe-btn {
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
     background: var(--tenne-tawny);
     font-weight: 500;
     font-size: 1.1rem;

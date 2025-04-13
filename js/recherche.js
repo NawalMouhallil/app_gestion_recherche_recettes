@@ -81,4 +81,36 @@ function mealRecipeModal(meal) {
     `;
   mealDetailsContent.innerHTML = html; // Insère le HTML généré dans le conteneur des détails
   mealDetailsContent.parentElement.classList.add("showRecipe"); // Affiche la fenêtre modale
+
 }
+
+
+// Exemple de requête AJAX pour récupérer des recettes depuis une API REST
+function fetchRecettesFromAPI(params) {
+  axios
+    .get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params}`) // Appelle l'API avec un paramètre de recherche
+    .then((response) => {
+      console.log("Recettes récupérées depuis l'API", response.data);
+      response.data.forEach((recette) => {
+        // Ajoute chaque recette récupérée dans IndexedDB
+        ajouterRecetteDansIndexedDB(
+          recette.nom,
+          recette.ingredients,
+          recette.temps
+        );
+      });
+      afficherRecettes(); // Met à jour la liste des recettes
+    })
+    .catch((error) => {
+      console.error(
+        "Erreur lors de la récupération des recettes depuis l'API",
+        error
+      );
+    });
+}
+
+// Appelle cette fonction au chargement de la page pour remplir la base de données avec des recettes depuis l'API
+window.onload = function () {
+  fetchRecettesFromAPI();
+};
+
