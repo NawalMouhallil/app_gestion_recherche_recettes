@@ -179,3 +179,4 @@ function resetForm() {
   document.getElementById("ajouterRecetteBtn").classList.remove("d-none"); // Affiche le bouton "Ajouter"
   document.getElementById("modifierRecetteBtn").classList.add("d-none"); // Masque le bouton "Modifier"
 }
+

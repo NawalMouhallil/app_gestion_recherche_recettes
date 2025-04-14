@@ -4,10 +4,15 @@ const mealList = document.getElementById("meal"); // Conteneur pour afficher les
 const mealDetailsContent = document.querySelector(".meal-details-content"); // Contenu des détails du repas
 const recipeCloseBtn = document.getElementById("recipe-close-btn"); // Bouton pour fermer les détails de la recette
 
+
+/**__1__****les trois EventListners********/
 // Ajout des écouteurs d'événements
 searchBtn.addEventListener("click", getMealList); // Écouteur pour le clic sur le bouton de recherche
 mealList.addEventListener("click", getMealRecipe); // Écouteur pour le clic sur un élément de repas
 recipeCloseBtn.addEventListener("click", () => {
+
+  // Écouteur pour le clic sur le bouton de fermeture des détails de la recette
+  // ***__2__******Animation utiliser pour ferme la modale des détails de la recette*********
   mealDetailsContent.parentElement.classList.remove("showRecipe"); // Ferme la fenêtre modale des détails
 });
 
@@ -42,7 +47,7 @@ function getMealList() {
         html = "Désolé, aucun repas trouvé !";
         mealList.classList.add("notFound"); // Ajoute la classe "notFound"
       }
-
+// 
       mealList.innerHTML = html; // Insère le HTML généré dans le conteneur
     });
 }
@@ -60,7 +65,7 @@ function getMealRecipe(e) {
       .then((data) => mealRecipeModal(data.meals)); // Passe les données à la fonction pour afficher la modale
   }
 }
-
+/*__3__****Lapplication ne doit pas contenir  aucun rechergement de page*****/
 // Fonction pour créer une fenêtre modale avec les détails de la recette
 function mealRecipeModal(meal) {
   console.log(meal); // Affiche les données dans la console pour débogage
@@ -80,10 +85,13 @@ function mealRecipeModal(meal) {
         </div>
     `;
   mealDetailsContent.innerHTML = html; // Insère le HTML généré dans le conteneur des détails
+
+  // Ajout des ingrédients à la modale
+  // ***__4__******Animation est utilisée pour afficher  la fenêtre modaldes details d'une recette********************
   mealDetailsContent.parentElement.classList.add("showRecipe"); // Affiche la fenêtre modale
 
 }
-
+// **___5___****Requête AJAX pour récupérer des recettes depuis une API REST******* //
 
 // Exemple de requête AJAX pour récupérer des recettes depuis une API REST
 function fetchRecettesFromAPI(params) {
