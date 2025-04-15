@@ -1,6 +1,7 @@
 # Ignorer le dossier node_modules
 node_modules/
 
+
 # Ignorer les fichiers spécifiques à macOS
 .DS_Store
 
